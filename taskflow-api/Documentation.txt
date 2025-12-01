@@ -1,0 +1,19 @@
+DOCUMENTATION:
+
+endpoints disponibles:
+api/tasks/id/
+api/admin/
+
+paramètres de requête:
+title,created_at,status
+
+exemples d’appels (GET/POST/PUT/DELETE):
+
+GET http://127.0.0.1:8000/api/tasks/
+POST http://127.0.0.1:8000/api/tasks/
+PUT http://127.0.0.1:8000/api/tasks/id/
+DELETE http://127.0.0.1:8000/api/tasks/id/
+
+Erreur typique:
+
+HTTP 400 erreur requête : erreur dans la formulation
