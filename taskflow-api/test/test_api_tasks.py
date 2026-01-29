@@ -27,3 +27,11 @@ def test_create_task_with_user_sets_owner():
     assert resp.status_code == 201
     t = Task.objects.get(title='T2')
     assert t.owner == user
+
+@pytest.mark.django_db
+def test_no_cycle():
+    a = Task.objects.create(title="A")
+    b = Task.objects.create(title="B", parent=a)
+    a.parent = b
+    with pytest.raises(Exception):
+        a.full_clean()

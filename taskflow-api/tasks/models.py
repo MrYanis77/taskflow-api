@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
 
+# une class c'est comme une table pour model.py
 def validate_status(value):
     if value not in ["À faire", "En cours", "Fait"]:
         raise ValidationError("Statut invalide : choisir 'À faire', 'En cours' ou 'Fait'.")

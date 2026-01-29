@@ -7,35 +7,45 @@ API_BASE = os.getenv("API_BASE", "http://127.0.0.1:8000")
 st.set_page_config(page_title="TaskFlow Board", layout="wide")
 st.title("TaskFlow – Board Jira-like")
 
+
 @st.cache_data
 def fetch_tasks():
+    """
+    Récupère les tâches depuis l'API TaskFlow.
+    En mode démo, on pourra remplacer par un JSON local.
+    """
     resp = requests.get(f"{API_BASE}/api/tasks/")
     resp.raise_for_status()
     return resp.json()
 
+
+# --- Chargement des données ---
 st.write("Chargement des tâches…")
 
 try:
-    tasks = fetch_tasks()
+    tasks = fetch_tasks()["results"]
     st.success(f"{len(tasks)} tâches chargées.")
 except Exception as e:
     st.error(f"Impossible de joindre l'API : {e}")
     st.stop()
 
-# Définition des colonnes du board
+
+# --- Définition des colonnes Kanban ---
 STATUS_COLUMNS = [
     ("Backlog", ["À faire"]),
-    ("Sélectionné", ["À faire"]),
     ("En cours", ["En cours"]),
     ("Terminé", ["Fait"]),
 ]
 
+
 st.subheader("Board Kanban")
+
 cols = st.columns(len(STATUS_COLUMNS))
 
 for col_idx, (col_title, status_values) in enumerate(STATUS_COLUMNS):
     with cols[col_idx]:
         st.markdown(f"### {col_title}")
+
         column_tasks = [t for t in tasks if t["status"] in status_values]
 
         if not column_tasks:

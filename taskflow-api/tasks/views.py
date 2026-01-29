@@ -26,7 +26,7 @@ class TaskViewSet(ModelViewSet):
         user = self.request.user if self.request.user.is_authenticated else None
         serializer.save(owner=user)
 
-     # ... queryset, serializer_class, filters, etc.
+    # ... queryset, serializer_class, filters, etc.
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         if instance.status == "En cours":
