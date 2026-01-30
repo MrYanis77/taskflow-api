@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     os.getenv("RENDER_EXTERNAL_HOSTNAME", ""),
+    "taskflow-api-5mg4.onrender.com", # Ajoute celle-ci par sécurité
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -34,7 +35,6 @@ SECRET_KEY = 'django-insecure-*kw#pc!8v65x#4+wvfnui18vjqzcs9gi9z)#=1&yrtb4w_!e4a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 LOGGING = {
     "version": 1,
