@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import requests
 
-API_BASE = os.getenv("API_BASE", "http://127.0.0.1:8000")
+API_BASE = os.getenv("API_BASE", "https://taskflow-api-5mg4.onrender.com")
 
 st.set_page_config(page_title="TaskFlow Board", layout="wide")
 st.title("TaskFlow – Board Jira-like")
